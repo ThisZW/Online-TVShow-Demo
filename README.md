@@ -10,6 +10,10 @@ You will be submitting a full stack application for this challenge. The technolo
   - Bootstrap or equivalent
 - **Backend:** Express, Sequelize w/ SQLite
 
+You will be submitting a GITHUB repo with two seperate folders:
+- `/backend`
+- `/frontend`
+
 ## TV Show Watchlist App
 
 TV Show Watchlist will be a full-stack application where users can post, comment on, and favorite TV shows that they are binging on.
