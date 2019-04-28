@@ -1,0 +1,28 @@
+.logo{
+  width: 200px;
+  height: 31px;
+  color: white;
+  float: left;
+}
+
+.logo h3{
+  display: inline-block;
+  color: white;
+}
+
+.home{
+  text-align: center;
+}
+
+.show-img{
+  width: 100%;
+  height: auto;
+}
+
+.show-desc{
+  padding: 10px 10px;
+}
+
+.user > div{
+  padding: 10px 0;
+}
