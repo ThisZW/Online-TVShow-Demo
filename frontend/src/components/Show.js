@@ -25,8 +25,11 @@ class Show extends Component{
           this.setState({
             submitSuccess: true
           }, () => {
+            this.loadShowData()
             setTimeout(() => {
-              window.location.reload()
+              this.setState({ //disable the alert
+                submitSuccess: false
+              })
             }, 2000)
           })
         })
@@ -34,12 +37,16 @@ class Show extends Component{
     });
   }
 
-  componentDidMount() {
+  loadShowData = () => {
     showById(this.props.match.params.id).then( res => {
       this.setState({
         data: res.data
       })
     })
+  }
+
+  componentDidMount() {
+    this.loadShowData()
   }
 
   render(){
@@ -48,7 +55,7 @@ class Show extends Component{
     return(
       <div>
       { submitSuccess &&
-        <Alert message="Submitted! Redirecting back!  " type="success" showIcon />
+        <Alert message="Submitted!" type="success" showIcon />
       }
       { data ?
       <div className="user">

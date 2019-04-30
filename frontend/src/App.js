@@ -105,6 +105,12 @@ class App extends Component{
                 () => <Login {...this.state} /> 
               } />
           </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            TV Watchlist @2019 created by Chris Huang.&nbsp;
+            <a href="https://github.com/ThisZW/Online-TVShow-Demo">
+              <Icon style={{ fontSize: '16px', color: 'black' }} type="github" />
+            </a>
+          </Footer>
         </Layout>
       </Router>
     );
