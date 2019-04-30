@@ -32,7 +32,7 @@ CREATE TABLE `Comments` (
   KEY `showId` (`showId`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`showId`) REFERENCES `shows` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `Comments` (
 
 LOCK TABLES `Comments` WRITE;
 /*!40000 ALTER TABLE `Comments` DISABLE KEYS */;
-INSERT INTO `Comments` VALUES (3,'example comment',2,1),(4,'This is really fun !',1,1),(5,'This is really fun !',1,2);
+INSERT INTO `Comments` VALUES (3,'example comment',2,1),(4,'This is really fun !',1,1),(5,'This is really fun !',1,2),(6,'This is really fun !',2,2),(7,'I like this too!',3,6),(8,'really fun!!!',3,6),(9,'Again I like this!',3,6);
 /*!40000 ALTER TABLE `Comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `Shows` (
   KEY `genreId` (`genreId`),
   CONSTRAINT `shows_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
   CONSTRAINT `shows_ibfk_2` FOREIGN KEY (`genreId`) REFERENCES `genres` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `Shows` (
 
 LOCK TABLES `Shows` WRITE;
 /*!40000 ALTER TABLE `Shows` DISABLE KEYS */;
-INSERT INTO `Shows` VALUES (1,'Big bang theory','1556600084370-big-bang-theory.jpg',1,2),(2,'The Fosters Family','1556600362431-the-forsters-family.jpg',1,3),(3,'Lost','1556600555427-lost.jpg',1,1),(4,'Big bang theory','1556606507662-big-bang-theory.jpg',2,2),(5,'The Fosters Family','1556606528463-the-forsters-family.jpg',2,3);
+INSERT INTO `Shows` VALUES (1,'Big bang theory','1556600084370-big-bang-theory.jpg',1,2),(2,'The Fosters Family','1556600362431-the-forsters-family.jpg',1,3),(3,'Lost','1556600555427-lost.jpg',1,1),(4,'Big bang theory','1556606507662-big-bang-theory.jpg',2,2),(5,'The Fosters Family','1556606528463-the-forsters-family.jpg',2,3),(6,'Lost','1556660803437-lost.jpg',3,6);
 /*!40000 ALTER TABLE `Shows` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +135,7 @@ CREATE TABLE `Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'test1'),(2,'test3');
+INSERT INTO `Users` VALUES (1,'test1'),(2,'test3'),(3,'realuser');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -157,4 +157,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-30 17:38:13
+-- Dump completed on 2019-04-30 18:02:00
