@@ -1,6 +1,17 @@
 # Online TV Show Demo
 ## Showroom Take Home Technical Challenge
 
+### Getting Started
+```bash
+cd server && yarn dev #with nodemon
+cd client && yarn start
+```
+
+- **Stacks that actually used:**
+  - create-react-app, react-router-dom, axios, ant design
+  - express, sequelize with MySQL, multer and etc
+  
+ 
 ### Opening Remarks
 
 You will be submitting a full stack application for this challenge. The technologies you must use:
