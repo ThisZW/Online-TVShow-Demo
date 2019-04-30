@@ -81,7 +81,7 @@ class Show extends Component{
                 {getFieldDecorator('comment', {
                   rules: [{ required: true, message: 'Insert a new comment!' }],
                 })(
-                  <Input placeholder="Text Title Input!" />
+                  <Input placeholder="Insert a new comment!" />
                 )}
               </Form.Item>
               <Button htmlType="submit"> Submit </Button>
