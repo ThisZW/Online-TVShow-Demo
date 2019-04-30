@@ -5,10 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     imgUrl: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     genreId: DataTypes.INTEGER
-  }, {});
+  }, {})
   Show.associate = function(models) {
     Show.belongsTo(models.Genre)
     Show.belongsTo(models.User)
-  };
-  return Show;
+    Show.hasMany(models.Comment)
+  }
+  return Show
 };

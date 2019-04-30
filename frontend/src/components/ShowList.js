@@ -24,7 +24,7 @@ export default class ShowList extends Component{
   render(){
     const {shows} = this.state
     return(
-    <div className="home">
+    <div>
       <Row>
         <Col>
           <h2> Master List of TV Shows </h2>

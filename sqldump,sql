@@ -1,0 +1,160 @@
+-- MySQL dump 10.13  Distrib 8.0.15, for osx10.14 (x86_64)
+--
+-- Host: localhost    Database: showroom_example
+-- ------------------------------------------------------
+-- Server version	8.0.15
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8mb4 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Comments`
+--
+
+DROP TABLE IF EXISTS `Comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `commentBody` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `showId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `showId` (`showId`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`showId`) REFERENCES `shows` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Comments`
+--
+
+LOCK TABLES `Comments` WRITE;
+/*!40000 ALTER TABLE `Comments` DISABLE KEYS */;
+INSERT INTO `Comments` VALUES (3,'example comment',2,1),(4,'This is really fun !',1,1),(5,'This is really fun !',1,2);
+/*!40000 ALTER TABLE `Comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Genres`
+--
+
+DROP TABLE IF EXISTS `Genres`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Genres` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `genreName` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Genres`
+--
+
+LOCK TABLES `Genres` WRITE;
+/*!40000 ALTER TABLE `Genres` DISABLE KEYS */;
+INSERT INTO `Genres` VALUES (1,'Fantasy'),(2,'Science Fiction'),(3,'Westerns'),(4,'Romance'),(5,'Thriller'),(6,'Mystery'),(7,'Detective story'),(8,'Dystopia'),(9,'Memoir'),(10,'Biography'),(11,'Play'),(12,'Musical'),(13,'Horror'),(14,'Dictionary'),(15,'others');
+/*!40000 ALTER TABLE `Genres` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SequelizeMeta`
+--
+
+DROP TABLE IF EXISTS `SequelizeMeta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `SequelizeMeta` (
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SequelizeMeta`
+--
+
+LOCK TABLES `SequelizeMeta` WRITE;
+/*!40000 ALTER TABLE `SequelizeMeta` DISABLE KEYS */;
+INSERT INTO `SequelizeMeta` VALUES ('20190428175456-create-user.js'),('20190428182431-create-genre.js'),('20190428182511-create-show.js'),('20190428182539-create-comment.js');
+/*!40000 ALTER TABLE `SequelizeMeta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Shows`
+--
+
+DROP TABLE IF EXISTS `Shows`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Shows` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imgUrl` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `genreId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `genreId` (`genreId`),
+  CONSTRAINT `shows_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+  CONSTRAINT `shows_ibfk_2` FOREIGN KEY (`genreId`) REFERENCES `genres` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Shows`
+--
+
+LOCK TABLES `Shows` WRITE;
+/*!40000 ALTER TABLE `Shows` DISABLE KEYS */;
+INSERT INTO `Shows` VALUES (1,'Big bang theory','1556600084370-big-bang-theory.jpg',1,2),(2,'The Fosters Family','1556600362431-the-forsters-family.jpg',1,3),(3,'Lost','1556600555427-lost.jpg',1,1),(4,'Big bang theory','1556606507662-big-bang-theory.jpg',2,2),(5,'The Fosters Family','1556606528463-the-forsters-family.jpg',2,3);
+/*!40000 ALTER TABLE `Shows` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Users`
+--
+
+DROP TABLE IF EXISTS `Users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Users`
+--
+
+LOCK TABLES `Users` WRITE;
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES (1,'test1'),(2,'test3');
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-04-30 17:38:13

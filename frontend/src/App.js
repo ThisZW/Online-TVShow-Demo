@@ -63,8 +63,8 @@ class App extends Component{
             >
               <Menu.Item key="home"><Link to="/"> Home </Link></Menu.Item> 
               <Menu.Item key="users"><Link to="/users"> Users </Link></Menu.Item>
-              <Menu.Item key="tv-shows"><Link to="/shows"> TV Shows </Link></Menu.Item>
-              <Menu.Item key="generes"><Link to="/"> Generes </Link></Menu.Item>
+              <Menu.Item key="shows"><Link to="/shows"> TV Shows </Link></Menu.Item>
+              <Menu.Item key="my-shows"><Link to={`/user/${userId}`}> My Shows </Link></Menu.Item>
               { !isLoggedIn ?
                 <Menu.Item className="menu-right" key="login"><Link to="/login"> Login </Link></Menu.Item>
                 :

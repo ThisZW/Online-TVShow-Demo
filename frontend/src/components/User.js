@@ -26,22 +26,28 @@ export default class User extends Component{
     console.log(shows)
     return(
       <div className="user">
+        <Row type="flex" align="middle">
         { shows.length > 0 ?
           shows.map( show => {
-            return <Row>
-              <Col md={4} xs={8}>
-                <img className="show-img" src={`/public/images/${show.imgUrl}`} alt="gof" />
-              </Col>
-              <Col md={20} xs={16}>
-                <div className="show-desc">
-                  <h2>{show.title}</h2>
-                  <h3>{show.Genre.genreName}</h3>
-                </div>
-              </Col>
-            </Row>
+            return <Col span={12}>
+              <Row>
+                <a href={`/show/${show.id}`}>
+                  <Col span={12}>
+                    <img className="show-img" src={`/public/images/${show.imgUrl}`} alt="gof" />
+                  </Col>
+                  <Col span={12}>
+                    <div className="show-desc">
+                      <h2>{show.title}</h2>
+                      <h3>{show.Genre.genreName}</h3>
+                    </div>
+                  </Col>
+                </a>
+              </Row>
+            </Col>
           }) :
           <h3>No shows for this user yet!</h3>
         }
+        </Row>
       </div>
     )
   }

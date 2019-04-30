@@ -18,6 +18,22 @@ const upload = multer({ storage: storage })
 
 const { User, Show, Genre, Comment } = require('../models')
 
+router.get('/:id(\\d+)', (req, res) => {
+  Show.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: [
+      { model: Comment, include: [ User ]},
+      User,
+      Genre ]
+  }).then(show=> {
+    res.json(show)
+  }).catch(err => {
+    res.status(500).send(err)
+  })
+})
+
 router.get('/user/:id(\\d+)', (req, res) => {
   Show.findAll({
     include: [ Genre ],

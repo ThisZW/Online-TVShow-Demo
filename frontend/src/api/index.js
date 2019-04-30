@@ -50,15 +50,16 @@ export const shows = () => {
   return axios.get("show/list")
 }
 
-export const showsById = (showId) => {
-  return axios.get(`show/genre/${showId}`)
+//this also shows comments
+export const showById = (showId) => {
+  return axios.get(`show/${showId}`)
 }
 
 export const addShow = (form) => {
   return axios.post(
-          "show/add-show", 
-          form,
-          {config: { headers: {'Content-Type': 'multipart/form-data' }}})
+    "show/add-show", 
+    form,
+    {config: { headers: {'Content-Type': 'multipart/form-data' }}})
 }
 
 export const showsByGenreId = (genreId) => {
@@ -67,4 +68,13 @@ export const showsByGenreId = (genreId) => {
 
 export const showByUserId = (userId) => {
   return axios.get(`show/user/${userId}`)
+}
+
+//Comments
+
+export const addComment = (form) => {
+  return axios.post(
+    "comment/add-comment",
+    form,
+  )
 }
