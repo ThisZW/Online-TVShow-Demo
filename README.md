@@ -1,5 +1,5 @@
-# Showroom
-## Take Home Technical Challenge
+# Online TV Show Demo
+## Showroom Take Home Technical Challenge
 
 ### Opening Remarks
 
