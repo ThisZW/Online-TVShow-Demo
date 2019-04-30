@@ -18,11 +18,37 @@ const upload = multer({ storage: storage })
 
 const { User, Show, Genre, Comment } = require('../models')
 
-router.get('/user/:id', (req, res) => {
-  Show.findAll.where({
-    userId: req.param.id
+router.get('/user/:id(\\d+)', (req, res) => {
+  Show.findAll({
+    include: [ Genre ],
+    where: {
+      userId: req.params.id
+    }
   }).then( shows =>{
     res.json(shows)
+  }).catch(err => {
+    res.status(500).send(err)
+  })
+})
+
+router.get('/list', (req, res) => {
+  Show.findAll({
+    include: [ User ],
+    attributes: ['title', 'userId']
+  }).then( shows => {
+    if(shows){
+      let obj = {}
+      shows.forEach( show => {
+        if(!obj.hasOwnProperty(show.title))
+          obj[show.title] = []
+        obj[show.title].push(show.User)
+      })
+      res.json(obj)
+    } else {
+      throw "empty table"
+    }
+  }).catch(err => {
+    res.status(500).send(err)
   })
 })
 
@@ -42,7 +68,7 @@ router.post('/add-show', upload.single('image'), (req, res) => {
     console.log(show)
     res.send('success')
   }).catch( err => {
-    console.log(err)
+    res.status(500).send(err)
   })
 })
 

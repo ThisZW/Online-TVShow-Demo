@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     genreId: DataTypes.INTEGER
   }, {});
   Show.associate = function(models) {
+    Show.belongsTo(models.Genre)
+    Show.belongsTo(models.User)
   };
   return Show;
 };

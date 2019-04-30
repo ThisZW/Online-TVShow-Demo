@@ -28,7 +28,10 @@ export default class UserList extends Component{
           { !isLoggedIn ?
               <h3>Please Log in first</h3>
               :
-              <h3>Welcome {username}, your id is {userId}</h3>
+              [
+                <h3>Welcome {username}, your id is {userId}</h3>,
+                <h4>Want to post a new show? <a href="/user/post">Click here</a>!</h4>
+              ]
           }
         </Col>
         <Col span="24" style={{marginTop: 50}}>

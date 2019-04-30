@@ -86,7 +86,7 @@ class App extends Component{
               } />
             <Route path="/user/:id(\d+)"
               render={
-                () => <User {...this.state} /> 
+                (props) => <User {...props} {...this.state} /> 
               } />
             <Route path="/user/post" 
               render={
@@ -94,7 +94,7 @@ class App extends Component{
               } />
             <Route path="/show/:id(\d+)"
               render={
-                () => <Show {...this.state} /> 
+                (props) => <Show {...props} {...this.state} /> 
               } />
             <Route path="/shows"
               render={

@@ -7,16 +7,15 @@ const { User, Show, Genre, Comment } = require('../models')
 
 
 router.get('/list', (req, res, next) => {
-  User.findAll({
-    include: [ Show ]
-  }).then( users => {
+  User.findAll()
+  .then( users => {
     res.json(users)
   }).catch( err => {
     res.status(500).send({error: err})
   })
 });
 
-router.get('/:id(\d+)', (req, res, next) => {
+router.get('/:id(\\d+)', (req, res, next) => {
   User.findByPk(
     req.params.id
   ).then( user => {
@@ -34,6 +33,7 @@ router.post('/login', (req, res, next) => {
     res.status(500).send({error: err})
   })
 })
+
 
 
 module.exports = router
