@@ -4,6 +4,7 @@ import Show from './Show'
 import ShowList from './ShowList'
 import User from './User'
 import UserList from './UserList'
+import Login from './Login'
 
 export {
   Home,
@@ -11,5 +12,6 @@ export {
   Show,
   ShowList,
   User,
-  UserList
+  UserList,
+  Login
 }

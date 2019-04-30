@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Alert } from 'antd';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import "antd/dist/antd.css";
-import {Home, UserList, User, Post, Show, ShowList } from "./components";
+import {Home, UserList, User, Post, Show, ShowList, Login } from "./components";
 const {
   Header, Footer, Sider, Content,
 } = Layout;
@@ -14,25 +14,39 @@ class App extends Component{
   constructor(){
     super()
     this.state = {
-      isLoggedin: false,
+      isLoggedIn: false,
       username: null,
-      userId: null
+      userId: null,
+      loggingOut: false,
     }
   }
 
+  handleLogout = () => {
+    ['id', 'username'].forEach(val => {
+      localStorage.removeItem(val)
+    });
+    this.setState({
+      loggingOut: true
+    }, () => {
+      setTimeout(() => {
+        window.location.reload()
+      }, 3000)
+    })
+  }
+  
   //check localstorage and see if there is a username stored
   componentDidMount = () => {
-    if(window.localStorage.getItem('username')){
+    if(window.localStorage.getItem('username') && window.localStorage.getItem('id')){
       this.setState({
-        isLoggedin: true,
+        isLoggedIn: true,
         username: window.localStorage.username,
-        id: window.localStorage
+        userId: window.localStorage.id
       })
     }
   }
 
   render(){
-    const { isLoggedin, username, userId } = this.state
+    const { isLoggedIn, username, userId, loggingOut } = this.state
     return (
       <Router>
         <Layout>
@@ -47,21 +61,49 @@ class App extends Component{
               defaultSelectedKeys={['2']}
               style={{ lineHeight: '64px'}}
             >
-              <Menu.Item key="home">Home</Menu.Item>
-              <Menu.Item key="users">Users</Menu.Item>
-              <Menu.Item key="tv-shows">TV Shows</Menu.Item>
-              <Menu.Item key="generes">Generes</Menu.Item>
-              <Menu.Item key="login"></Menu.Item>
-              <Menu.Item key="logout"></Menu.Item>
+              <Menu.Item key="home"><Link to="/"> Home </Link></Menu.Item> 
+              <Menu.Item key="users"><Link to="/users"> Users </Link></Menu.Item>
+              <Menu.Item key="tv-shows"><Link to="/shows"> TV Shows </Link></Menu.Item>
+              <Menu.Item key="generes"><Link to="/"> Generes </Link></Menu.Item>
+              { !isLoggedIn ?
+                <Menu.Item className="menu-right" key="login"><Link to="/login"> Login </Link></Menu.Item>
+                :
+                <Menu.Item className="menu-right" key="logout" onClick={this.handleLogout}> Welcome! {username} Logout </Menu.Item> 
+              }
             </Menu>
           </Header>
-          <Content style={{maxWidth: '1200px', padding: '50px 100px'}}>
-            <Route exact path="/" component={Home} />
-            <Route path="/users" component={UserList} />
-            <Route path="/user/:id(\d+)" component={User} />
-            <Route path="/user/post" component={Post} />
-            <Route path="/show/:id(\d+)" component={Show} />
-            <Route path="/shows" component={ShowList} />
+          <Content style={{width: '1200px', maxWitth: '100%', padding: '50px 100px', margin: 'auto'}}>
+            { loggingOut &&
+              <Alert message="Logging out!" type="success" showIcon />
+            }
+            <Route exact path="/" 
+              render={
+                () => <Home {...this.state} /> 
+              } />
+            <Route path="/users" 
+              render={
+                () => <UserList {...this.state} /> 
+              } />
+            <Route path="/user/:id(\d+)"
+              render={
+                () => <User {...this.state} /> 
+              } />
+            <Route path="/user/post" 
+              render={
+                () => <Post {...this.state} /> 
+              } />
+            <Route path="/show/:id(\d+)"
+              render={
+                () => <Show {...this.state} /> 
+              } />
+            <Route path="/shows"
+              render={
+                () => <ShowList {...this.state} /> 
+              } />
+            <Route path="/login"
+              render={
+                () => <Login {...this.state} /> 
+              } />
           </Content>
         </Layout>
       </Router>

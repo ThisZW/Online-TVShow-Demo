@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'antd';
+import { Card} from 'antd';
 
 export default class Home extends Component{
   render(){
