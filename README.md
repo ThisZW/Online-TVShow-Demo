@@ -1,5 +1,4 @@
 # Online TV Show Demo
-## Showroom Take Home Technical Challenge
 
 ### Getting Started
 ```bash
